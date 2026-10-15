@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Savings Challenge You'll Actually Finish</title>
+<!--
+  ============================================================
+  待 Lee 填入（共 3 处，搜索本文件中的 PLACEHOLDER 即可定位）：
+  【2026-10-15 已定：三轨——落地页 CTA 用 Stripe 直连 Payment Link】
+  1. CHECKOUT_STARTER_URL   → Stripe Payment Link（$1 Starter；After payment 跳转 thanks_starter.html）
+  2. CHECKOUT_FULLPACK_URL  → Stripe Payment Link（$3 Full Pack；After payment 跳转 thanks_fullpack.html）
+  3. FORMSPREE_ENDPOINT_PLACEHOLDER → Formspree 表单 endpoint（免费试用版邮箱收集）
+     免费试用版发放方式已定：提交邮箱后 _next 自动跳转 download.html 当场领 PDF（freebie_1page.pdf），
+     邮箱照样进 Formspree（K5 留资率照测）；Lee 之后想手动跟进，用 Formspree 收到的邮箱即可。
+  注意：Etsy 上架只能在 Lee 的 iPhone（香港号码）上操作，不要在这台电脑上登录 Etsy。
+  ============================================================
+-->
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; overflow-x: hidden; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: #111; background: #fff; line-height: 1.6;
+  }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 28px 20px 60px; }
+  .eyebrow { font-size: 12px; letter-spacing: 2px; color: #888; text-transform: uppercase; }
+  h1 { font-size: 30px; line-height: 1.25; margin: 10px 0 6px; }
+  .cn { color: #555; font-size: 15px; margin: 0 0 14px; }
+  .sub { font-size: 16px; color: #333; }
+  .hero-art { margin: 22px 0; border: 1px solid #ddd; border-radius: 12px; padding: 18px; text-align: center; }
+  .boxes { display: inline-block; }
+  .boxes span {
+    display: inline-block; width: 26px; height: 26px; border: 1.5px solid #111;
+    margin: 3px; vertical-align: middle;
+  }
+  .boxes span.done { background: repeating-linear-gradient(45deg, #fff, #fff 3px, #111 3px, #111 4px); }
+  h2 { font-size: 20px; margin: 34px 0 10px; }
+  ul.clean { list-style: none; padding: 0; margin: 0; }
+  ul.clean li { padding: 8px 0; border-bottom: 1px dashed #e3e3e3; font-size: 15px; }
+  ul.clean li:last-child { border-bottom: none; }
+  .why { background: #f7f7f7; border-radius: 12px; padding: 18px; margin: 8px 0; }
+  .why b { display: block; font-size: 15px; }
+  .why .cn { font-size: 13.5px; margin: 2px 0 0; }
+  .price-cards { display: flex; gap: 14px; margin: 14px 0; }
+  .card {
+    flex: 1; border: 1.5px solid #111; border-radius: 12px; padding: 18px 16px;
+    text-align: center; min-width: 0;
+  }
+  .card.hot { background: #111; color: #fff; }
+  .card.hot .cn { color: #ccc; }
+  .card .p { font-size: 30px; font-weight: 700; margin: 4px 0; }
+  .card .n { font-size: 14px; font-weight: 600; }
+  .card .d { font-size: 13px; margin: 6px 0 14px; }
+  .btn {
+    display: block; width: 100%; padding: 13px 10px; border-radius: 10px;
+    font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer;
+    border: 1.5px solid #111; background: #fff; color: #111;
+  }
+  .card.hot .btn { background: #fff; color: #111; border-color: #fff; }
+  .card:not(.hot) .btn { background: #111; color: #fff; }
+  .risk { font-size: 14px; color: #555; border-left: 3px solid #111; padding-left: 12px; margin: 26px 0; }
+  .email-box { border: 1px solid #ddd; border-radius: 12px; padding: 20px 18px; margin: 10px 0; }
+  .email-box input[type="email"] {
+    width: 100%; padding: 12px; font-size: 15px; border: 1.5px solid #bbb;
+    border-radius: 10px; margin: 10px 0;
+  }
+  .email-box button {
+    width: 100%; padding: 13px; font-size: 15px; font-weight: 700;
+    background: #111; color: #fff; border: none; border-radius: 10px; cursor: pointer;
+  }
+  footer { margin-top: 44px; font-size: 12px; color: #999; text-align: center; }
+  @media (max-width: 480px) {
+    h1 { font-size: 25px; }
+    .price-cards { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Printable savings &amp; habit trackers</p>
+  <h1>The savings challenge you'll actually finish.</h1>
+  <p class="cn">你能真正堅持完的儲蓄挑戰。</p>
+  <p class="sub">7 print-and-color trackers. No app, no subscription, no guilt. Print one page, color one box, watch your savings grow.</p>
+  <p class="cn sub">7 張打印即用的上色追蹤表。不用 App、不訂閱、不販賣焦慮。打印一張，塗滿一格，看著存款長大。</p>
+
+  <div class="hero-art" aria-hidden="true">
+    <div class="boxes">
+      <span class="done"></span><span class="done"></span><span class="done"></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <h2>What's inside</h2>
+  <ul class="clean">
+    <li>100-Day Challenge <span class="cn">— 100 天儲蓄挑戰</span></li>
+    <li>52-Week Challenge <span class="cn">— 52 週儲蓄挑戰</span></li>
+    <li>No-Spend Month <span class="cn">— 不花錢月追蹤</span></li>
+    <li>30-Day Habit Streak <span class="cn">— 30 天習慣打卡</span></li>
+    <li>Milestone Review <span class="cn">— 里程碑覆盤頁</span></li>
+    <li>1-page Quick Start <span class="cn">— 一頁紙使用說明</span></li>
+  </ul>
+
+  <h2>Why it works</h2>
+  <div class="why">
+    <b>Visual progress</b>
+    Coloring boxes beats staring at numbers.
+    <p class="cn">上色進度比盯數字管用。</p>
+  </div>
+  <div class="why">
+    <b>At your own pace</b>
+    Miss a week, nothing breaks.
+    <p class="cn">按自己節奏，斷一週也不崩。</p>
+  </div>
+  <div class="why">
+    <b>Printer-friendly</b>
+    Black-line design saves ink.
+    <p class="cn">黑白線條，省墨。</p>
+  </div>
+
+  <h2>Get it now</h2>
+  <div class="price-cards">
+    <div class="card">
+      <div class="n">Starter</div>
+      <div class="p">$1</div>
+      <div class="d">2-page starter edition<br>(100-Day + 30-Day Habit)<br><span class="cn">2 頁精簡版，先嚐一口</span></div>
+      <!-- 待 Lee 填入：CHECKOUT_STARTER_URL → $1 starter 实际收款链接 -->
+      <a class="btn" href="https://buy.stripe.com/7sYfZj6Qr3pVf0m9Yb43S00">Try the 2-page starter</a>
+    </div>
+    <div class="card hot">
+      <div class="n">Full Pack</div>
+      <div class="p">$3</div>
+      <div class="d">Complete 7-page pack<br>+ quick-start guide<br><span class="cn">完整 7 頁＋使用指南</span></div>
+      <!-- 待 Lee 填入：CHECKOUT_FULLPACK_URL → $3 full pack 实际收款链接 -->
+      <a class="btn" href="https://buy.stripe.com/3cI8wR2AbbWraK64DR43S01">Get the full 7-page pack</a>
+    </div>
+  </div>
+
+  <p class="risk">Digital download, yours forever. Not for you? Email us within 7 days.<br><span class="cn">數字下載，永久擁有。7 天內不滿意可郵件聯繫。</span></p>
+
+  <h2>Not sure yet?</h2>
+  <div class="email-box">
+    <b>Leave your email, get 1 tracker page free.</b>
+    <p class="cn" style="margin:6px 0 0">留郵箱，免費領 1 頁試用版。</p>
+    <!-- 免费试用：JS fetch 提交到 Formspree，成功后前端直接跳 download.html（Formspree 的 _next 跳转不可靠，已弃用）。 -->
+    <form id="freebie-form">
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <input type="hidden" name="_subject" value="Free tracker page request">
+      <button type="submit">Send me the free page</button>
+      <p id="freebie-msg" class="cn" style="margin:8px 0 0" hidden></p>
+    </form>
+    <script>
+    (function(){
+      var form = document.getElementById('freebie-form');
+      var msg = document.getElementById('freebie-msg');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        fetch('https://formspree.io/f/mzedkrvy', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function(res){
+          if (res.ok) {
+            window.location.href = 'download.html';
+          } else { fail(); }
+        }).catch(fail);
+        function fail(){
+          msg.hidden = false;
+          msg.textContent = 'Something went wrong, please try again. / 提交失敗，請再試一次。';
+        }
+      });
+    })();
+    </script>
+  </div>
+
+  <footer>For personal use only. / 僅限個人使用。</footer>
+</div>
+</body>
+</html>
