@@ -1,0 +1,22 @@
+C010 Classroom Storage Labels — Licence
+
+You may:
+- Print these labels as many times as you need for your own classroom or home.
+- Type your own label text into the fillable fields and print the result.
+
+You may not:
+- Share, resell, redistribute or give away the digital files (PDF / README /
+  INDEX / BUILD-LOG), in whole or in part, whether free or paid.
+- Use the files, or prints made from edited versions of the files, as part of
+  a product offered for sale.
+- Claim the design as your own.
+
+One purchase = one teacher / one household. If your school needs several
+teachers covered, please buy one copy per teacher.
+
+Embedded font note:
+The fillable fields use the WenQuanYi Micro Hei font (文泉驿微米黑),
+© its contributors (WenQuanYi project), embedded in full under its licence
+terms (GPL v3 with the font embedding exception / Apache License 2.0, at the
+recipient's choice). The font's licence applies to the font itself; the label
+design and layout are covered by the licence above.
