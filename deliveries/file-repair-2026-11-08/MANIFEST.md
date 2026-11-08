@@ -32,3 +32,8 @@
 | speed7 | | Speed7-Buyer-Files-2.zip | 137651 | ef82a9d160daaf72e9aa70af40f73932a69257748f01954b3cf99b7658969458 |
 | y2027-supplement | | dated-12p-2027_A4.pdf | 37396 | 803caa8d153504b56f6541ba8a82dc072b026d5b143523ef936243e37a172860 |
 | y2027-supplement | | dated-12p-2027_Letter.pdf | 36782 | fa267d10d63a887d8791ff853223100a90d16495990fc934964a4ab3f0ac2ee5 |
+
+## 合包 ZIP
+
+| SettledDays-Buyer-Files-Repair-2026-11-08.zip | 65882601 | 02c369f6b91ac3c69d6e39913f67b0349a7c7a7108911f6c142c27a9982cd33c |
+合包内 26 个文件，与上表逐项一致。
