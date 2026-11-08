@@ -1,0 +1,12 @@
+04e3cc479e05167686e24e43f74e18ddf36327ee3347355ff5f30d9a4aad9fd1  deliveries/quality-overhaul-batch2-2026-11-08/TASK-PACKAGE-BATCH2A-WAVE2-2026-11-08.md
+5d785319ae060761b3d40a1d6b47adf6df21c8dc9974663db1d84b209f951b7b  deliveries/quality-overhaul-batch2-2026-11-08/TASK-PACKAGE-BATCH2B-THIRDROUND-2026-11-08.md
+533247553b27a70f20fc23ad1c6efcea5ef675df9dd11d7e865770522931f08c  deliveries/quality-overhaul-batch2-2026-11-08/samples/PIN-D4W-定版-r1-100px.png
+5203c5136fe2e94ab1a3515e94f98f7273136ff140aef0606b3f9337a6340a27  deliveries/quality-overhaul-batch2-2026-11-08/samples/PIN-D4W-定版-r1.png
+00ebf42f2946ba43b43b4ddc2b59fe9131461956b398269defacbdaf9955b68d  deliveries/quality-overhaul-batch2-2026-11-08/samples/PIN-HOMEINV-定版-r1-100px.png
+5e219c610b2644bde53ae4505d77884e55d668b4069acc0f807fff74b21361c3  deliveries/quality-overhaul-batch2-2026-11-08/samples/PIN-HOMEINV-定版-r1.png
+7f916b2257ffdfba489ab9e33a79a393c8729b642ff265779e43538e27c6db11  deliveries/quality-overhaul-batch2-2026-11-08/samples/PIN-S010-定版-100px.png
+974424ef6bc0aea395df3b1f6e515e882c3304725000727b5d3d105fffcb30dc  deliveries/quality-overhaul-batch2-2026-11-08/samples/PIN-S010-定版.png
+5f6e8a1b89f67c5c487f366a05328dc947dd7b44a901aaae1d0dd0658b3d1e75  deliveries/quality-overhaul-batch2-2026-11-08/docs/CORRECTION-NOTE-定版三件小事-2026-11-08.md
+5143c96dd5c868cafdf3c0cbef89693ed7e32942a28df69905d79bdc223dada4  deliveries/quality-overhaul-batch2-2026-11-08/docs/SettledDays质感规范-v1.md
+0ca56724c7c1c2b4615c242f8007f0775fcb2bd77b8f911974c7d6db74944348  deliveries/quality-overhaul-batch2-2026-11-08/docs/定版样板三张审计-2026-11-08.md
+4496a46f8f5185ee539a57abc3eec1fd585a99c7c57c3e0f333f882a803da8ef  deliveries/quality-overhaul-batch2-2026-11-08/docs/纠正单重渲两图审计-2026-11-08.md
