@@ -1,0 +1,79 @@
+<!-- SettledDays email-capture snippet — drop into any landing page.
+     Style-matched to the smoke-test pages (Georgia serif, 640px, dark button).
+     Backend: FormSubmit (formsubmit.co), free, no signup, no server.
+     How it works: the visitor's email is POSTed as JSON to the AJAX endpoint;
+     FormSubmit emails it to richard.localleads@gmail.com (the inbox IS the list, v1).
+     FIRST USE: the first submission triggers an "Activate Form" email to that inbox.
+     Lee clicks it once; submissions made before activation are held and delivered
+     after activation (per FormSubmit docs). If a visitor's submit fails for any
+     reason (network, service down, not yet activated), the mailto fallback below
+     stays visible so no intent is lost.
+     Per-page changes: _subject (email subject line) and source (which page it came from).
+     Limits: no dashboard; submissions kept 30 days, readable via API 5x/day.
+     When the list grows, migrate to Buttondown/Mailchimp (needs a Lee account).
+     RULE: never swap this into a running smoke-test page mid-window (S-033/S-035
+     count mailto intent emails until 11-12); deploy on new pages, retrofit after. -->
+
+<form id="capture-form" novalidate>
+  <label for="capture-email" class="capture-label">Email address</label>
+  <input id="capture-email" name="email" type="email" required autocomplete="email"
+         placeholder="you@example.com" class="capture-input">
+  <input type="text" name="_honey" class="capture-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="cta">Notify me when it&rsquo;s ready</button>
+  <p id="capture-msg" class="capture-msg" role="status" aria-live="polite"></p>
+</form>
+<p class="note">Prefer email? Write to us directly:
+<a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+<script>
+(function () {
+  var form = document.getElementById('capture-form');
+  var email = document.getElementById('capture-email');
+  var msg = document.getElementById('capture-msg');
+  /* Per-page values — change these two lines when reusing the snippet. */
+  var SUBJECT = '2027 Refresh Pack - New signup';
+  var SOURCE = '2027-refresh-notify';
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var value = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      msg.textContent = 'Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    msg.textContent = 'Sending\u2026';
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        source: SOURCE,
+        _subject: SUBJECT,
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      /* FormSubmit returns success as the STRING "true"/"false" — compare as string. */
+      if (data && (data.success === 'true' || data.success === true)) {
+        form.style.display = 'none';
+        msg.textContent = 'You\u2019re on the list \u2014 we\u2019ll email you the moment it launches.';
+      } else {
+        msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+      }
+    })
+    .catch(function () {
+      msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+    });
+  });
+})();
+</script>
+
+<style>
+  .capture-label { display: block; font-size: 16px; margin: 16px 0 8px; }
+  .capture-input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; margin-bottom: 12px; }
+  .capture-honey { display: none; }
+  .capture-msg { font-size: 16px; margin-top: 12px; min-height: 24px; }
+</style>

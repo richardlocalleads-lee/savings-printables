@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2027 Quarterly Refresh Pack — Coming Soon | SettledDays</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; color: #222; line-height: 1.6; }
+  h1 { font-size: 32px; line-height: 1.2; margin-bottom: 8px; }
+  .sub { font-size: 18px; color: #555; margin-bottom: 24px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  .price { font-size: 28px; font-weight: bold; margin: 24px 0 8px; }
+  .cta { display: inline-block; background: #222; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 18px; border-radius: 4px; margin-top: 16px; border: none; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; }
+  .cta:hover { background: #444; }
+  .note { font-size: 14px; color: #777; margin-top: 24px; }
+  .for { background: #f5f5f0; padding: 16px 20px; border-left: 4px solid #222; margin: 24px 0; }
+  .capture-label { display: block; font-size: 16px; margin: 16px 0 8px; }
+  .capture-input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; margin-bottom: 12px; }
+  .capture-honey { display: none; }
+  .capture-msg { font-size: 16px; margin-top: 12px; min-height: 24px; }
+</style>
+</head>
+<body>
+<h1>2027 Quarterly Refresh Pack</h1>
+<p class="sub">One planner for the whole year, refreshed every quarter &mdash; so it never goes stale in March.</p>
+
+<p>Most yearly planners are written in January and forgotten by spring. This pack is the 2027 goals planner plus a fresh set of pages every quarter: review what worked, set the next quarter&rsquo;s goals, and reset without starting over.</p>
+
+<div class="for">
+<strong>Buy once, get all four refreshes.</strong> The 2027 pack now, then a refresh set in April, July, and October &mdash; each one emailed to you as a printable PDF, A4 + US Letter.
+</div>
+
+<h2>What&rsquo;s inside</h2>
+<ul>
+  <li><strong>2027 goals pack</strong> &mdash; the full-year goals planner: 12 big goals, quarterly check-ins, mid-year review.</li>
+  <li><strong>Quarterly refresh sets (Q2, Q3, Q4)</strong> &mdash; a fresh goals page, a quarterly review, and a reset checklist for each quarter.</li>
+  <li><strong>Quarterly review page</strong> &mdash; what got done, what didn&rsquo;t, and what changes next quarter.</li>
+  <li><strong>Reset checklist</strong> &mdash; a short reset you can do in one sitting when a quarter goes off track.</li>
+</ul>
+
+<p>Printable PDF, A4 + US Letter. Print what you need, reuse it all year.</p>
+
+<p class="price">$6.99</p>
+<p>One-time purchase. Refresh pages arrive by email each quarter.</p>
+
+<form id="capture-form" novalidate>
+  <label for="capture-email" class="capture-label">Email address</label>
+  <input id="capture-email" name="email" type="email" required autocomplete="email"
+         placeholder="you@example.com" class="capture-input">
+  <input type="text" name="_honey" class="capture-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="cta">Notify me when it&rsquo;s ready</button>
+  <p id="capture-msg" class="capture-msg" role="status" aria-live="polite"></p>
+</form>
+<p class="note">Prefer email? Write to us directly:
+<a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+<p class="note">Coming soon. Join the list and we will email you the moment it launches. No spam &mdash; one email when it is ready, then one email per quarterly refresh.</p>
+<p class="note">SettledDays &mdash; Money, home and head, settled.</p>
+
+<script>
+(function () {
+  var form = document.getElementById('capture-form');
+  var email = document.getElementById('capture-email');
+  var msg = document.getElementById('capture-msg');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var value = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      msg.textContent = 'Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    msg.textContent = 'Sending\u2026';
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        source: '2027-refresh-notify',
+        _subject: '2027 Refresh Pack - New signup',
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      /* FormSubmit returns success as the STRING "true"/"false" — compare as string. */
+      if (data && (data.success === 'true' || data.success === true)) {
+        form.style.display = 'none';
+        msg.textContent = 'You\u2019re on the list \u2014 we\u2019ll email you the moment it launches.';
+      } else {
+        msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+      }
+    })
+    .catch(function () {
+      msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
