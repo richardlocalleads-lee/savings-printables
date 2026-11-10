@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold Savings Challenge — Coming Soon | SettledDays</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; color: #222; line-height: 1.6; }
+  h1 { font-size: 32px; line-height: 1.2; margin-bottom: 8px; }
+  .sub { font-size: 18px; color: #555; margin-bottom: 24px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  .cta { display: inline-block; background: #222; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 18px; border-radius: 4px; margin-top: 16px; border: none; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; }
+  .cta:hover { background: #444; }
+  .note { font-size: 14px; color: #777; margin-top: 24px; }
+  .for { background: #f5f5f0; padding: 16px 20px; border-left: 4px solid #222; margin: 24px 0; }
+  .testing { background: #eef6ee; padding: 16px 20px; border-left: 4px solid #2F7D32; margin: 24px 0; }
+  .capture-label { display: block; font-size: 16px; margin: 16px 0 8px; }
+  .capture-input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; margin-bottom: 12px; }
+  .capture-honey { display: none; }
+  .capture-msg { font-size: 16px; margin-top: 12px; min-height: 24px; }
+</style>
+</head>
+<body>
+<h1>Gold Savings Challenge</h1>
+<p class="sub">Save toward a gold goal, one gram at a time.</p>
+
+<p>In many Gulf households, gold is savings &mdash; bought a little at a time, kept for years, passed down. This tracker is built around that habit: instead of a dollar target, you set a gram target, and save toward it month by month.</p>
+
+<div class="testing">
+<strong>This is a concept we&rsquo;re testing &mdash; not a product for sale yet.</strong> If enough people want it, we&rsquo;ll make it. Join the waitlist below and we&rsquo;ll email you if it launches. No price is set yet, and nothing is available to buy right now.
+</div>
+
+<div class="for">
+<strong>A goal measured in grams, not dollars.</strong> Most savings challenges count money. This one counts gold: your target is a weight (for example, 10&nbsp;g of 21K gold), and every month you write down what you saved and the grams it bought, until the grams add up to your target.
+</div>
+
+<h2>What it would be</h2>
+<ul>
+  <li><strong>A gram target you set</strong> &mdash; pick your goal in grams (for example, 10&nbsp;g of 21K gold) and the tracker shows how far along you are.</li>
+  <li><strong>A monthly savings grid</strong> &mdash; each month, record what you saved and the grams it bought at that month&rsquo;s gold price.</li>
+  <li><strong>Milestones along the way</strong> &mdash; watch the grams add up toward your target, so a long goal stays visible.</li>
+  <li><strong>How it works</strong> &mdash; the rules on one page: how to set the target, how to record each month, and what to do when a month gets skipped.</li>
+</ul>
+
+<p>Printable PDF, A4 + US Letter. Print it, keep it with your gold, check off one month at a time.</p>
+
+<form id="capture-form" novalidate>
+  <label for="capture-email" class="capture-label">Email address</label>
+  <input id="capture-email" name="email" type="email" required autocomplete="email"
+         placeholder="you@example.com" class="capture-input">
+  <input type="text" name="_honey" class="capture-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="cta">Join the waitlist</button>
+  <p id="capture-msg" class="capture-msg" role="status" aria-live="polite"></p>
+</form>
+<p class="note">Prefer email? Write to us directly:
+<a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+<p class="note">Join the waitlist and we will email you if this launches. No spam &mdash; one email, only if it launches.</p>
+<p class="note">SettledDays &mdash; Money, home and head, settled.</p>
+
+<script>
+(function () {
+  var form = document.getElementById('capture-form');
+  var email = document.getElementById('capture-email');
+  var msg = document.getElementById('capture-msg');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var value = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      msg.textContent = 'Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    msg.textContent = 'Sending\u2026';
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        source: 'g4-gold-smoke-test',
+        _subject: 'Gold Savings Challenge - New signup',
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      /* FormSubmit returns success as the STRING "true"/"false" — compare as string. */
+      if (data && (data.success === 'true' || data.success === true)) {
+        form.style.display = 'none';
+        msg.textContent = 'You\u2019re on the list \u2014 we\u2019ll email you if it launches.';
+      } else {
+        msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+      }
+    })
+    .catch(function () {
+      msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
