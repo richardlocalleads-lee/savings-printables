@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold Savings Calculator — How many grams a month? | SettledDays</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; color: #222; line-height: 1.6; }
+  h1 { font-size: 32px; line-height: 1.2; margin-bottom: 8px; }
+  .sub { font-size: 18px; color: #555; margin-bottom: 24px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  .cta { display: inline-block; background: #222; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 18px; border-radius: 4px; margin-top: 16px; border: none; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; }
+  .cta:hover { background: #444; }
+  .note { font-size: 14px; color: #777; margin-top: 24px; }
+  .testing { background: #eef6ee; padding: 16px 20px; border-left: 4px solid #2F7D32; margin: 24px 0; }
+  .calc { background: #f5f5f0; padding: 20px; border-left: 4px solid #B8860B; margin: 24px 0; }
+  .calc label { display: block; font-size: 16px; margin: 14px 0 6px; }
+  .calc input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; }
+  .calc .hint { font-size: 14px; color: #777; margin: 4px 0 0; }
+  .result { margin-top: 20px; font-size: 18px; }
+  .result strong { font-size: 22px; }
+  .capture-label { display: block; font-size: 16px; margin: 16px 0 8px; }
+  .capture-input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; margin-bottom: 12px; }
+  .capture-honey { display: none; }
+  .capture-msg { font-size: 16px; margin-top: 12px; min-height: 24px; }
+</style>
+</head>
+<body>
+<h1>Gold Savings Calculator</h1>
+<p class="sub">How many grams does your monthly saving buy?</p>
+
+<p>In many Gulf households, gold is savings &mdash; bought a little at a time, kept for years, passed down. This calculator answers one question: if you set aside the same amount every month, how many grams does it buy &mdash; and how long until your target?</p>
+
+<div class="testing">
+<strong>This is a concept we&rsquo;re testing &mdash; not a product for sale yet.</strong> If enough people want it, we&rsquo;ll make it &mdash; a tracker, a calculator, or both. Join the waitlist below and we&rsquo;ll email you if it launches. No price is set yet, and nothing is available to buy right now.
+</div>
+
+<div class="calc">
+  <label for="in-monthly">I can set aside each month ($)</label>
+  <input id="in-monthly" type="number" min="1" step="1" value="50">
+  <label for="in-price">Gold price per gram today ($)</label>
+  <input id="in-price" type="number" min="1" step="0.01" placeholder="e.g. 130">
+  <p class="hint">Enter today&rsquo;s per-gram price from your jeweller, for the purity you buy (21K or 24K). The price changes daily, so the answer is only as fresh as the price you type.</p>
+  <label for="in-target">My target (grams)</label>
+  <input id="in-target" type="number" min="1" step="0.5" value="10">
+  <div class="result" id="calc-result" aria-live="polite"></div>
+</div>
+
+<p>Prefer a paper tracker instead? We&rsquo;re also testing a <a href="https://richardlocalleads-lee.github.io/savings-printables/deliveries/g4-gold-smoke-test-2026-11-10/">Gold Savings Challenge tracker</a> &mdash; a printable grid where you record each month&rsquo;s saving and the grams it bought.</p>
+
+<h2>Join the waitlist</h2>
+<p>If this calculator &mdash; or the tracker &mdash; is something you&rsquo;d use, leave your email. We&rsquo;ll email you if it launches.</p>
+
+<form id="capture-form" novalidate>
+  <label for="capture-email" class="capture-label">Email address</label>
+  <input id="capture-email" name="email" type="email" required autocomplete="email"
+         placeholder="you@example.com" class="capture-input">
+  <input type="text" name="_honey" class="capture-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="cta">Join the waitlist</button>
+  <p id="capture-msg" class="capture-msg" role="status" aria-live="polite"></p>
+</form>
+<p class="note">Prefer email? Write to us directly:
+<a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+<p class="note">Join the waitlist and we will email you if this launches. No spam &mdash; one email, only if it launches.</p>
+<p class="note">SettledDays &mdash; Money, home and head, settled.</p>
+
+<script>
+(function () {
+  var monthly = document.getElementById('in-monthly');
+  var price = document.getElementById('in-price');
+  var target = document.getElementById('in-target');
+  var out = document.getElementById('calc-result');
+  function fmt(n, d) { return n.toLocaleString('en-US', { maximumFractionDigits: d == null ? 2 : d }); }
+  function recalc() {
+    var m = parseFloat(monthly.value), p = parseFloat(price.value), t = parseFloat(target.value);
+    if (!(m > 0) || !(p > 0)) {
+      out.innerHTML = 'Enter your monthly saving and today&rsquo;s gold price per gram to see the answer.';
+      return;
+    }
+    var gramsPerMonth = m / p;
+    var months = t > 0 ? Math.ceil(t / gramsPerMonth) : 0;
+    var gramsYear = gramsPerMonth * 12;
+    var html = '<strong>' + fmt(gramsPerMonth) + ' g</strong> a month. '
+      + 'In 12 months that&rsquo;s <strong>' + fmt(gramsYear) + ' g</strong> '
+      + '($' + fmt(m * 12, 0) + ' set aside).';
+    if (t > 0) {
+      html += '<br>To reach <strong>' + fmt(t) + ' g</strong>: about <strong>' + months + ' month' + (months === 1 ? '' : 's') + '</strong>.';
+    }
+    out.innerHTML = html;
+  }
+  [monthly, price, target].forEach(function (el) { el.addEventListener('input', recalc); });
+  recalc();
+
+  var form = document.getElementById('capture-form');
+  var email = document.getElementById('capture-email');
+  var msg = document.getElementById('capture-msg');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var value = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      msg.textContent = 'Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    msg.textContent = 'Sending\u2026';
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        source: 'g4-gold-calculator',
+        _subject: 'G4 Gold Calculator - New signup',
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      /* FormSubmit returns success as the STRING "true"/"false" — compare as string. */
+      if (data && (data.success === 'true' || data.success === true)) {
+        form.style.display = 'none';
+        msg.textContent = 'You\u2019re on the list \u2014 we\u2019ll email you if it launches.';
+      } else {
+        msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+      }
+    })
+    .catch(function () {
+      msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
