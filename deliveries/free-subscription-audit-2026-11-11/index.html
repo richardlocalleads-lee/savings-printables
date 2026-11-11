@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Subscription Audit — Find the subscriptions you're still paying for | SettledDays</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; color: #222; line-height: 1.6; }
+  h1 { font-size: 32px; line-height: 1.2; margin-bottom: 8px; }
+  .sub { font-size: 18px; color: #555; margin-bottom: 24px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  .cta { display: inline-block; background: #222; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 18px; border-radius: 4px; margin-top: 16px; border: none; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; }
+  .cta:hover { background: #444; }
+  .note { font-size: 14px; color: #777; margin-top: 24px; }
+  .capture-label { display: block; font-size: 16px; margin: 16px 0 8px; }
+  .capture-input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; margin-bottom: 12px; }
+  .capture-honey { display: none; }
+  .capture-msg { font-size: 16px; margin-top: 12px; min-height: 24px; }
+  .consent { font-size: 15px; color: #444; margin: 4px 0 12px; }
+  .consent input { margin-right: 8px; }
+  .thanks { display: none; background: #eef6ee; padding: 20px; border-left: 4px solid #2F7D32; margin: 24px 0; }
+  .thanks h2 { margin-top: 0; }
+  .thanks ul { margin: 8px 0; }
+  .thanks li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<h1>Find the subscriptions you&rsquo;re still paying for.</h1>
+<p class="sub">A free printable subscription audit. List every subscription, what it costs, and when you last used it &mdash; mark keep or cancel, and see what cancelling saves you each month.</p>
+
+<ul>
+  <li>One page, A4 + US Letter, print at home.</li>
+  <li>Every subscription in one list &mdash; cost, last used, keep or cancel.</li>
+  <li>Free &mdash; no account, no card.</li>
+</ul>
+
+<form id="capture-form" novalidate>
+  <label for="capture-email" class="capture-label">Email address</label>
+  <input id="capture-email" name="email" type="email" required autocomplete="email"
+         placeholder="you@example.com" class="capture-input">
+  <p class="consent"><label><input type="checkbox" id="capture-consent">Also send me SettledDays product news &mdash; at most one email in the next month, about the paid savings challenges.</label></p>
+  <input type="text" name="_honey" class="capture-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="cta">Get the free audit</button>
+  <p id="capture-msg" class="capture-msg" role="status" aria-live="polite"></p>
+</form>
+<p class="note">We use your email to send you this free file&rsquo;s download record. We only send you product news if you tick the box above &mdash; at most one email in the next month, about the paid savings challenges. We never sell or share your address.</p>
+<p class="note">Prefer email? Write to us directly:
+<a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+<div class="thanks" id="thanks" aria-live="polite">
+  <h2>Your download is ready</h2>
+  <ul>
+    <li><a href="Free-Subscription-Audit-A4.pdf">Download the audit (A4 PDF)</a></li>
+    <li><a href="Free-Subscription-Audit-Letter.pdf">Download the audit (US Letter PDF)</a></li>
+  </ul>
+  <h2>Put what you didn&rsquo;t spend to work</h2>
+  <p>You didn&rsquo;t spend it &mdash; now give it a job. A savings challenge turns &ldquo;money I didn&rsquo;t spend&rdquo; into a total you can see.</p>
+  <ul>
+    <li><a href="https://www.etsy.com/listing/4611956807?utm_source=settleddays-free&amp;utm_medium=thank-you&amp;utm_campaign=subscription-audit-test-2026-11">S-002 &mdash; Savings Challenge, $4.99</a></li>
+    <li><a href="https://www.etsy.com/listing/4608059394?utm_source=settleddays-free&amp;utm_medium=thank-you&amp;utm_campaign=subscription-audit-test-2026-11">M5 &mdash; Goal Savings Challenge, $3</a></li>
+    <li><a href="https://www.etsy.com/listing/4601773193?utm_source=settleddays-free&amp;utm_medium=thank-you&amp;utm_campaign=subscription-audit-test-2026-11">D5 &mdash; Low Income Savings Challenges, $4.99</a></li>
+  </ul>
+  <p id="thanks-list-line"></p>
+</div>
+
+<p class="note">SettledDays &mdash; Money, home and head, settled.</p>
+
+<script>
+(function () {
+  var form = document.getElementById('capture-form');
+  var email = document.getElementById('capture-email');
+  var consent = document.getElementById('capture-consent');
+  var msg = document.getElementById('capture-msg');
+  var thanks = document.getElementById('thanks');
+  var listLine = document.getElementById('thanks-list-line');
+  /* Per-page values — from TASKPACK-LEADMAGNET-B-PRODUCTION-2026-11-11-REV1 §3.2. */
+  var SUBJECT = 'Free Subscription Audit - New signup';
+  var SOURCE = 'free-subscription-audit';
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var value = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      msg.textContent = 'Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    var consented = consent.checked;
+    msg.textContent = 'Sending\u2026';
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        source: SOURCE,
+        marketing_consent: consented ? 'yes' : 'no',
+        _subject: SUBJECT,
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      /* FormSubmit returns success as the STRING "true"/"false" — compare as string. */
+      if (data && (data.success === 'true' || data.success === true)) {
+        form.style.display = 'none';
+        msg.textContent = '';
+        /* The download links appear only after a successful submit. */
+        listLine.textContent = consented
+          ? 'You\u2019re on the list \u2014 at most one email in the next month, about the paid savings challenges.'
+          : 'Your download links are above. You haven\u2019t subscribed to product news.';
+        thanks.style.display = 'block';
+      } else {
+        msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+      }
+    })
+    .catch(function () {
+      msg.textContent = 'That didn\u2019t go through. Please use the email link below instead.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
