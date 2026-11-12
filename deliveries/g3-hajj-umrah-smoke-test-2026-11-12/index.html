@@ -124,9 +124,9 @@
   <ul class="would-be">
     <li>A savings goal page — set your package cost target, and the planner works out how much to save each month.</li>
     <li>A three-package comparison table — price, hotel, transport and visa, side by side.</li>
-    <li>A Nusuk, visa and vaccine timeline — what to do, and by when.</li>
+    <li>A Nusuk, visa and vaccine timeline — what to do, and by when, checked against the current official requirements for your nationality and departure point.</li>
     <li>Document and packing checklists — passport, vaccine certificate, permit, and what to pack.</li>
-    <li>A Makkah and Madinah schedule — the 8–13 days of rituals, day by day.</li>
+    <li>A Makkah and Madinah schedule — separate Hajj and Umrah checklists, with itinerary details based on your chosen package and current official guidance.</li>
     <li>An emergency contacts page.</li>
   </ul>
 
@@ -193,7 +193,8 @@
     }).then(function (resp) {
       if (!resp.ok) { throw new Error('submit failed'); }
       return resp.json();
-    }).then(function () {
+    }).then(function (data) {
+      if (!data || data.success !== 'true') { throw new Error('submit failed'); }
       form.style.display = 'none';
       successBox.style.display = 'block';
     }).catch(function () {
