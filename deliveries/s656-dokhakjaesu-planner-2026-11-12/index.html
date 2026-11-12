@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1년 계획, 매주 점검. | SettledDays</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; color: #222; line-height: 1.6; }
+  h1 { font-size: 32px; line-height: 1.2; margin-bottom: 8px; }
+  .sub { font-size: 18px; color: #555; margin-bottom: 24px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  .cta { display: inline-block; background: #222; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 18px; border-radius: 4px; margin-top: 16px; border: none; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; }
+  .cta:hover { background: #444; }
+  .note { font-size: 14px; color: #777; margin-top: 24px; }
+  .capture-label { display: block; font-size: 16px; margin: 16px 0 8px; }
+  .capture-input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; margin-bottom: 12px; }
+  .capture-honey { display: none; }
+  .capture-msg { font-size: 16px; margin-top: 12px; min-height: 24px; }
+  .thanks { display: none; background: #eef6ee; padding: 20px; border-left: 4px solid #2F7D32; margin: 24px 0; }
+  .thanks h2 { margin-top: 0; }
+  .thanks ul { margin: 8px 0; }
+  .thanks li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<h1>1년 계획, 매주 점검.</h1>
+<p class="sub">학원 없이 혼자 재수한다면, 계획은 짜는 것보다 지키는 것이 어렵습니다. 과목별 연간 진도표와 매주 점검란, 두 장으로 나눠 정리하세요.</p>
+
+<ul>
+  <li>연간 진도표 1장: 과목별 1–12월 진도를 한눈에. 한 번 인쇄해서 1년 내내 봅니다.</li>
+  <li>매주 점검표 1장: 이번 주 계획, 실제 완료, 막힌 부분, 다음 주 조정. 매주 이 페이지만 인쇄하세요.</li>
+  <li>무료 2페이지, A4. 집에서 인쇄하세요.</li>
+</ul>
+
+<form id="capture-form" novalidate>
+  <label for="capture-email" class="capture-label">이메일 주소</label>
+  <input id="capture-email" name="email" type="email" required autocomplete="email"
+         placeholder="you@example.com" class="capture-input">
+  <input type="text" name="_honey" class="capture-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="cta">무료 파일 받기</button>
+  <p id="capture-msg" class="capture-msg" role="status" aria-live="polite"></p>
+</form>
+<p class="note">이메일은 이 무료 파일의 다운로드 기록을 보내는 데만 사용합니다. 주소를 판매하거나 공유하지 않습니다.</p>
+<p class="note">이메일로 문의: <a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+<div class="thanks" id="thanks" aria-live="polite">
+  <h2>다운로드 준비가 됐습니다</h2>
+  <ul>
+    <li><a href="S656-Dokhakjaesu-Year-Plan-A4.pdf">연간 커리큘럼 + 주간 점검표 다운로드 (A4 PDF, 2페이지)</a></li>
+  </ul>
+  <p>연간표는 한 번만 인쇄하세요. 매주 점검표만 매주 인쇄하세요.</p>
+  <p>SettledDays 스토어에서 더 보기: <a href="https://www.etsy.com/shop/SettledDays">etsy.com/shop/SettledDays</a></p>
+</div>
+
+<p class="note">SettledDays &mdash; Money, home and head, settled.</p>
+
+<script>
+(function () {
+  var form = document.getElementById('capture-form');
+  var email = document.getElementById('capture-email');
+  var msg = document.getElementById('capture-msg');
+  var thanks = document.getElementById('thanks');
+  /* Per-page values — from TASKPACK-S656-SMALL-COST-VERIFICATION-2026-11-11-REV1 §4. */
+  var SUBJECT = 'S-656 Dokhakjaesu Planner - New signup';
+  var SOURCE = 's656-dokhakjaesu-planner';
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var value = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      msg.textContent = '유효한 이메일 주소를 입력해 주세요.';
+      email.focus();
+      return;
+    }
+    msg.textContent = '전송 중…';
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        source: SOURCE,
+        _subject: SUBJECT,
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      /* FormSubmit returns success as the STRING "true"/"false" — compare as string. */
+      if (data && (data.success === 'true' || data.success === true)) {
+        form.style.display = 'none';
+        msg.textContent = '';
+        /* The download link appears only after a successful submit. */
+        thanks.style.display = 'block';
+      } else {
+        msg.textContent = '전송에 실패했습니다. 아래 이메일로 직접 연락해 주세요.';
+      }
+    })
+    .catch(function () {
+      msg.textContent = '전송에 실패했습니다. 아래 이메일로 직접 연락해 주세요.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
