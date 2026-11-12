@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hajj &amp; Umrah Savings Planner — SettledDays</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0 16px 48px;
+    background: #FAF8F3;
+    color: #222;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; }
+  header { text-align: center; padding: 48px 0 8px; }
+  h1 { color: #1B3A6B; font-size: 2.1rem; line-height: 1.25; margin: 0 0 10px; }
+  .subtitle { font-size: 1.15rem; color: #1B3A6B; font-style: italic; margin: 0; }
+  p.intro { font-size: 1.05rem; margin: 24px 0; }
+  .test-box {
+    background: #EAF4EC;
+    border: 1.5px solid #2E7D32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 1rem;
+  }
+  .for-box {
+    background: #FFFFFF;
+    border: 1px solid #D8D2C4;
+    border-left: 5px solid #1B3A6B;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+  .for-box .lead { font-weight: bold; color: #1B3A6B; font-size: 1.08rem; margin: 0 0 6px; }
+  .for-box p { margin: 0; }
+  h2 { color: #1B3A6B; font-size: 1.35rem; margin: 32px 0 12px; }
+  ul.would-be { margin: 0; padding-left: 22px; }
+  ul.would-be li { margin-bottom: 10px; }
+  .format-line {
+    background: #FFFFFF;
+    border: 1px solid #D8D2C4;
+    border-radius: 6px;
+    padding: 14px 20px;
+    margin: 24px 0;
+    font-size: 0.98rem;
+  }
+  .waitlist-note { font-size: 1rem; margin: 28px 0 12px; }
+  form { margin: 0 0 8px; }
+  .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  input[type="email"] {
+    flex: 1 1 260px;
+    padding: 12px 14px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1.5px solid #1B3A6B;
+    border-radius: 6px;
+    background: #FFFFFF;
+  }
+  button {
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #1B3A6B;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.6; cursor: default; }
+  .form-error { color: #B3261E; font-size: 0.95rem; margin: 8px 0 0; display: none; }
+  .success-box {
+    display: none;
+    background: #EAF4EC;
+    border: 1.5px solid #2E7D32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 1.05rem;
+    margin: 0 0 8px;
+  }
+  .fail-box {
+    display: none;
+    background: #FBEEEA;
+    border: 1.5px solid #B3261E;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 1rem;
+    margin: 0 0 8px;
+  }
+  .fallback { font-size: 0.98rem; margin: 20px 0 0; }
+  .fallback a { color: #1B3A6B; }
+  footer {
+    text-align: center;
+    margin-top: 44px;
+    padding-top: 18px;
+    border-top: 2px solid #1B3A6B;
+    color: #1B3A6B;
+    font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Hajj &amp; Umrah Savings Planner</h1>
+    <p class="subtitle">Save for the journey, one month at a time.</p>
+  </header>
+
+  <p class="intro">Hajj is a once-in-a-lifetime journey — and a large, long-term cost. This planner turns the big package price into a monthly savings goal, and keeps the whole trip — packages, documents, timeline and rituals — in one place.</p>
+
+  <div class="test-box">This is a concept we're testing — not a product for sale yet. If enough people want it, we'll make it. Join the waitlist below and we'll email you if it launches. No price is set yet, and nothing is available to buy right now.</div>
+
+  <div class="for-box">
+    <p class="lead">One plan for the money and the journey.</p>
+    <p>A large goal needs a monthly number. The planner gives you the package target and the monthly saving, plus the comparison and the checklists, so saving and planning live in one place.</p>
+  </div>
+
+  <h2>What it would be</h2>
+  <ul class="would-be">
+    <li>A savings goal page — set your package cost target, and the planner works out how much to save each month.</li>
+    <li>A three-package comparison table — price, hotel, transport and visa, side by side.</li>
+    <li>A Nusuk, visa and vaccine timeline — what to do, and by when.</li>
+    <li>Document and packing checklists — passport, vaccine certificate, permit, and what to pack.</li>
+    <li>A Makkah and Madinah schedule — the 8–13 days of rituals, day by day.</li>
+    <li>An emergency contacts page.</li>
+  </ul>
+
+  <div class="format-line">Printable PDF (20–24 pages) + a spreadsheet for savings tracking. A4 + US Letter. Gregorian + Hijri dates. English, with Arabic ritual terms (ihram, tawaf, sa'i) kept in Arabic and explained in English.</div>
+
+  <p class="waitlist-note">Join the waitlist and we will email you if this launches. No spam — one email, only if it launches.</p>
+
+  <form id="waitlist-form" novalidate>
+    <div class="form-row">
+      <input type="email" id="email" name="email" placeholder="Your email address" autocomplete="email" required>
+      <input type="text" name="_honey" style="display: none;">
+      <button type="submit" id="submit-btn">Join the waitlist</button>
+    </div>
+    <p class="form-error" id="form-error">Please enter a valid email address.</p>
+  </form>
+
+  <div class="success-box" id="success-box">You're on the list — we'll email you if it launches.</div>
+  <div class="fail-box" id="fail-box">That didn't go through. Please use the email link below instead.</div>
+
+  <p class="fallback">Prefer email? Write to us at <a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+  <footer>SettledDays — Money, home and head, settled.</footer>
+
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('waitlist-form');
+  var emailInput = document.getElementById('email');
+  var errorEl = document.getElementById('form-error');
+  var successBox = document.getElementById('success-box');
+  var failBox = document.getElementById('fail-box');
+  var submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    errorEl.style.display = 'none';
+    failBox.style.display = 'none';
+
+    var email = emailInput.value.trim().toLowerCase();
+    var match = email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+/);
+    var valid = !!match && match[0] === email;
+    if (!valid) {
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    submitBtn.disabled = true;
+
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        source: 'g3-hajj-umrah',
+        _subject: 'G3 Hajj Umrah Planner - New signup',
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    }).then(function (resp) {
+      if (!resp.ok) { throw new Error('submit failed'); }
+      return resp.json();
+    }).then(function () {
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+    }).catch(function () {
+      submitBtn.disabled = false;
+      failBox.style.display = 'block';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
