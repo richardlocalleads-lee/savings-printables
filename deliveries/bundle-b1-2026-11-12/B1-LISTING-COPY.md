@@ -3,6 +3,7 @@
 价格：$19.99（分开买合计 $25.98：binder $12.99＋M3 $12.99）。类目：Personal Finance Templates（与婚礼 listing 同类目，场内核对）。续期：Manual。made-to-order：不勾（固定数字产品，走即时下载；传完文件后逐项核对）。
 数字文件 3 件（按此顺序传）：① B1-01-Wedding-Binder-Buyer-Files.zip（5,450,218 B，SHA 20e4d696…）② B1-02-M3-Wedding-Workflow_Blank.xlsx（49,897 B，SHA c19c6223…）③ B1-03-M3-Wedding-Workflow_Filled-Example.xlsx（52,545 B，SHA 81589b28…）。
 封面图：B1-cover-1000x1500.png（1000×1500，259,717 B，SHA a4048edd…，已目视通过）。
+**第三方审核（2026-11-12 22:42）条件已满足**：①描述 PLEASE READ 段已逐字加入审核句（“Includes a printable wedding binder and a companion spreadsheet. Some planning sections cover the same tasks in two formats: print for writing and organizing, spreadsheet for calculations and tracking.”）；②两件单品互不含对方文件已核：binder ZIP 内 4 份 PDF＋README＋LICENSE（unzip -l 核实，无 xlsx），M3 单品文件仅 2 份 xlsx。描述现 2,766 字符，S1 仅 1 次。
 
 ## 标题（111 字符，已机检）
 Wedding Planning Bundle — Printable Binder + Budget Spreadsheet | Plan the Whole Wedding, On Paper and In Excel
@@ -34,6 +35,7 @@ HOW THE TWO FIT TOGETHER
 The binder says it on page 11: copy the figures from the spreadsheet, or fill in by hand. Use the spreadsheet to calculate — totals, paid and pending, what is left — and the binder to write, file and carry the plan. The binder is the paper companion; the spreadsheet does the sums.
 
 PLEASE READ BEFORE YOU BUY
+Includes a printable wedding binder and a companion spreadsheet. Some planning sections cover the same tasks in two formats: print for writing and organizing, spreadsheet for calculations and tracking.
 The binder and the spreadsheet cover the same wedding: the binder's budget, guest and vendor pages cover the same ground as the spreadsheet's Budget Overview, Guest List and Vendor Comparison sheets. You are buying two tools for one wedding, not two different weddings. If you already own the Wedding Binder or the Wedding Planner Spreadsheet, you already own half of this bundle — buy this bundle only if you want both.
 
 QUESTIONS
