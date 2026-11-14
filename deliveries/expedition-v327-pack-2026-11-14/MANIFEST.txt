@@ -1,2 +1,3 @@
 EXPEDITION-ADDENDUM-2026-11-14-SCORING-FIX-V327.md  4199 bytes  sha256:d3f50801757f2a9d84a542435bbdb80d1c25d7478528245204e7fceddc8ceeac
+patrol-sketches.md  80570 bytes  sha256:3161d6a7aea4aacf1318d8be5f1a9a5c8f367c343213aa1fc5bbba36b4dbddab
 rerate-v326-fourth-party-taskpack-2026-11-14.md  10364 bytes  sha256:3c99b9406d17fb17c90335285659dd274ac911db12073eeb631f706e956fcbee
