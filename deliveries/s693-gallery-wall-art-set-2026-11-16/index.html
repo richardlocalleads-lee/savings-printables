@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A printable wall-art set for a gallery-like wall at home | SettledDays</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; color: #222; line-height: 1.6; }
+  h1 { font-size: 32px; line-height: 1.2; margin-bottom: 8px; }
+  .sub { font-size: 18px; color: #555; margin-bottom: 24px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  .cta { display: inline-block; background: #222; color: #fff; text-decoration: none; padding: 14px 28px; font-size: 18px; border-radius: 4px; margin-top: 16px; border: none; cursor: pointer; font-family: Georgia, 'Times New Roman', serif; }
+  .cta:hover { background: #444; }
+  .note { font-size: 14px; color: #777; margin-top: 24px; }
+  .capture-label { display: block; font-size: 16px; margin: 16px 0 8px; }
+  .capture-input { display: block; width: 100%; box-sizing: border-box; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; padding: 12px 14px; border: 1px solid #999; border-radius: 4px; margin-bottom: 12px; }
+  .capture-honey { display: none; }
+  .capture-msg { font-size: 16px; margin-top: 12px; min-height: 24px; }
+  .thanks { display: none; background: #eef6ee; padding: 20px; border-left: 4px solid #2F7D32; margin: 24px 0; }
+  .thanks h2 { margin-top: 0; }
+</style>
+</head>
+<body>
+<h1>A printable wall-art set for a gallery-like wall at home</h1>
+<p class="sub">8–12 printable wall arts plus a style guide: where to hang, what frame, what to rotate by season. Instant download — swap anytime.</p>
+
+<ul>
+  <li>8–12 original wall arts, Korean four seasons and home themes, ready to print at home.</li>
+  <li>A style guide: which picture goes where, what frame size, what to pair it with.</li>
+  <li>Seasonal rotation: swap the wall when the season changes — no new purchase, no delivery wait.</li>
+  <li>Digital files to print at home — frames and printing not included. Original art, made for this set.</li>
+</ul>
+
+<form id="capture-form" novalidate>
+  <label for="capture-email" class="capture-label">Email address</label>
+  <input id="capture-email" name="email" type="email" required autocomplete="email"
+         placeholder="you@example.com" class="capture-input">
+  <input type="text" name="_honey" class="capture-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit" class="cta">Notify me when it's ready</button>
+  <p id="capture-msg" class="capture-msg" role="status" aria-live="polite"></p>
+</form>
+<p class="note">We're testing whether this should exist. Leave your email and we'll tell you when it's ready. We never sell or share your address.</p>
+<p class="note">Questions by email: <a href="mailto:richard.localleads@gmail.com">richard.localleads@gmail.com</a></p>
+
+<div class="thanks" id="thanks" aria-live="polite">
+  <h2>You're on the list</h2>
+  <p>We'll email you when the gallery wall-art set is ready.</p>
+  <p>More from SettledDays: <a href="https://www.etsy.com/shop/SettledDays">etsy.com/shop/SettledDays</a></p>
+</div>
+
+<p class="note">SettledDays &mdash; Money, home and head, settled.</p>
+
+<script>
+(function () {
+  var form = document.getElementById('capture-form');
+  var email = document.getElementById('capture-email');
+  var msg = document.getElementById('capture-msg');
+  var thanks = document.getElementById('thanks');
+  /* Per-page values — S-693 sketch, patrol-sketches.md. */
+  var SUBJECT = 'S-693 Gallery Wall Art Set - Notify Me';
+  var SOURCE = 's693-gallery-wall-art-set';
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var value = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      msg.textContent = 'Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    msg.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/richard.localleads@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        source: SOURCE,
+        _subject: SUBJECT,
+        _template: 'table',
+        _honey: '',
+        _captcha: 'false'
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      /* FormSubmit returns success as the STRING "true"/"false" — compare as string. */
+      if (data && (data.success === 'true' || data.success === true)) {
+        form.style.display = 'none';
+        msg.textContent = '';
+        thanks.style.display = 'block';
+      } else {
+        msg.textContent = 'Sending failed. Please contact us by email below.';
+      }
+    })
+    .catch(function () {
+      msg.textContent = 'Sending failed. Please contact us by email below.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
